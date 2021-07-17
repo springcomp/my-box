@@ -69,6 +69,7 @@ BEGIN {
         New-Item `
             -Path (Split-Path $profile) `
             -ItemType Directory `
+            -EA SilentlyContinue `
             | Out-Null
 
         Invoke-RestMethod `
