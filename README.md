@@ -20,3 +20,5 @@ This will install:
 - [customizations](https://github.com/springcomp/powershell_profile.ps1/blob/master/Microsoft.PowerShell_psreadline-profile.ps1) to [PSReadLine](https://docs.microsoft.com/en-us/powershell/module/psreadline/about/about_psreadline?view=powershell-7.2) PowerShell module.
 
 ![](bootstrap/assets/powershell.png)
+
+**Warning**: this script is designed to setup a new machine and installs a custom PowerShell profile. Please backup your existing `$profile` file before running this script.
