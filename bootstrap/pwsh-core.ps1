@@ -85,9 +85,11 @@ BEGIN {
 PROCESS {
 
     Download-Profile
+    Install-Module -Name Pwsh-Profile -Repository PSGallery -Scope CurrentUser -Force
+
     . $profile
 
-    Install-NerdFonts
+    ##Install-NerdFonts
     
     Install-Profile "oh-my-posh" -Load
     Install-Profile "psreadline" -Load
