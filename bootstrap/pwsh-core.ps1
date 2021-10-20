@@ -89,7 +89,7 @@ PROCESS {
 
     . $profile
 
-    ##Install-NerdFonts
+    Install-NerdFonts
     
     Install-Profile "oh-my-posh" -Load
     Install-Profile "psreadline" -Load
