@@ -40,11 +40,15 @@ Function Install-VsCode {
 	}
 }
 
+## list all currently installed extensions using the following command:
+## > code --list-extensions | % { "code --install-extension $_" }
+
 Function Install-VsCodeExtensions {
 
 	$code = "$Env:LOCALAPPDATA\Programs\Microsoft VS Code\bin\code.cmd"
 	$extensions = 
 		"DotJoshJohnson.xml", `
+		"eamodio.gitlens", `
 		"formulahendry.dotnet-test-explorer", `
 		"ms-azuretools.vscode-azurefunctions", `
 		"ms-azuretools.vscode-docker", `
