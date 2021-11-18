@@ -42,18 +42,23 @@ Function Install-VsCode {
 
 ## list all currently installed extensions using the following command:
 ## > code --list-extensions | % { "code --install-extension $_" }
+## > code --list-extensions | % { "`"$_`", ``" }
 
 Function Install-VsCodeExtensions {
 
 	$code = "$Env:LOCALAPPDATA\Programs\Microsoft VS Code\bin\code.cmd"
 	$extensions = 
+		"Azurite.azurite", `
 		"DotJoshJohnson.xml", `
 		"eamodio.gitlens", `
 		"formulahendry.dotnet-test-explorer", `
 		"ms-azuretools.vscode-azurefunctions", `
+		"ms-azuretools.vscode-azureresourcegroups", `
+		"ms-azuretools.vscode-azurestaticwebapps", `
 		"ms-azuretools.vscode-docker", `
 		"MS-CEINTL.vscode-language-pack-fr", `
 		"ms-dotnettools.csharp", `
+		"ms-kubernetes-tools.vscode-kubernetes-tools", `
 		"ms-vscode-remote.remote-containers", `
 		"ms-vscode-remote.remote-ssh", `
 		"ms-vscode-remote.remote-ssh-edit", `
@@ -62,6 +67,7 @@ Function Install-VsCodeExtensions {
 		"ms-vscode-remote.vscode-remote-extensionpack", `
 		"ms-vscode.azure-account", `
 		"ms-vscode.powershell", `
+		"redhat.vscode-yaml", `
 		"slevesque.vscode-hexdump", `
 		"TqrHsn.vscode-docker-registry-explorer", `
 		"Tyriar.sort-lines", `
