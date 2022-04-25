@@ -15,6 +15,8 @@ Function Install-Git {
 			-Uri $address `
 			-OutFile $exe
 
+		Write-Host "Installing Git. Please wait..." -ForegroundColor Cyan
+
 		$job = Start-Job `
 			-ArgumentList $exe `
 			-ScriptBlock {
@@ -25,7 +27,7 @@ Function Install-Git {
 			$options = "gitlfs,assoc,assoc_sh,windowsterminal"
 
 			$expression = ". `"$($exe)`" /VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /COMPONENTS=`"$options`" "
-			Write-Hos $expression
+			Write-Host $expression
 			Invoke-Expression -Command $expression
 			[Threading.Thread]::Sleep(50000)
 		}
