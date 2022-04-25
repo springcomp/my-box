@@ -87,7 +87,7 @@ PROCESS {
     Download-Profile
     Install-Module -Name Pwsh-Profile -Repository PSGallery -Scope CurrentUser -Force
 
-    . $profile
+    . $profile
 
     Install-NerdFonts
     
