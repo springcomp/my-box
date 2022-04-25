@@ -13,6 +13,8 @@ Function Install-VsCode {
             -Uri $address `
             -OutFile $exe
 
+		Write-Host "Installing Visual Studio Code. Please wait..." -ForegroundColor Cyan
+
 		$job = Start-Job `
             -ArgumentList $exe `
             -ScriptBlock {
