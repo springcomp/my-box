@@ -80,6 +80,13 @@ BEGIN {
         Write-Host "$destination updated." -ForegroundColor Cyan
     }
 
+    Function Install-OhMyPosh {
+        [CmdletBinding()]
+        param()
+
+        . winget install JanDeDobbeleer.OhMyPosh -s winget
+    }
+
 }
 
 PROCESS {
@@ -90,6 +97,7 @@ PROCESS {
     . $profile
 
     Install-NerdFonts
+    Install-OhMyPosh
     
     Install-Profile "oh-my-posh" -Load
     Install-Profile "psreadline" -Load
