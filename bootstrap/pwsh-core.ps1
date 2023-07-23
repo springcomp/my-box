@@ -87,6 +87,13 @@ BEGIN {
         . winget install JanDeDobbeleer.OhMyPosh -s winget
     }
 
+    Function Upgrade-OhMyPosh {
+        [CmdletBinding()]
+        param()
+
+        . winget update JanDeDobbeleer.OhMyPosh -s winget
+    }
+
 }
 
 PROCESS {
