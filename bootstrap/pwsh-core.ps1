@@ -1,14 +1,16 @@
 BEGIN {
+
     Function Install-NerdFonts {
 
         BEGIN {
-            $address = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip"
+            $address = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CascadiaCode.zip"
             $archive = "$($Env:TEMP)\CascadiaCode.zip"
             $folder = "$($Env:TEMP)\CascadiaCode"
 
             $shell = New-Object -ComObject Shell.Application
             $obj = $shell.Namespace(0x14)
             $systemFontsPath = $obj.Self.Path
+            $userFontsPath = Join-Path -Path $Env:LOCALAPPDATA -ChildPath "Microsoft\Windows\Fonts"
         }
 
         PROCESS {
@@ -30,12 +32,15 @@ BEGIN {
                     $path = $_.FullName
                     $fontName = $_.Name
                     
-                    $target = Join-Path -Path $systemFontsPath -ChildPath $fontName
-                    if (test-path $target) {
-                        Write-Host "Ignoring $($path) as it already exists." -ForegroundColor DarkGray
-                    } else {
-                        Write-Host "Installing $($path)..." -ForegroundColor Cyan
-                        $obj.CopyHere($path)
+                    $systemTarget = Join-Path -Path $systemFontsPath -ChildPath $fontName
+                    $userTarget = Join-Path -Path $userFontsPath -ChildPath $fontName
+                    if ($fontName.EndsWith(".ttf")) {
+                        if ((test-path $systemTarget) -or (test-path $userTarget)) {
+                            Write-Host "Ignoring $($path) as it already exists." -ForegroundColor DarkGray
+                        } else {
+                            Write-Host "Installing $($path)..." -ForegroundColor Cyan
+                            $obj.CopyHere($path)
+                        }
                     }
                 }
         }
@@ -92,6 +97,21 @@ BEGIN {
         param()
 
         . winget update JanDeDobbeleer.OhMyPosh -s winget
+    }
+
+    Function Upgrade-TerminalIcons {
+        [CmdletBinding()]
+        param()
+
+        $moduleName = "Terminal-Icons"
+        $hasModule = Get-Module -Name $moduleName | Select -First 1
+        if ($hasModule) {
+            Update-Module -Name "Terminal-Icons"
+        }
+        else {
+            Install-Module -Name $moduleName
+        }
+
     }
 
 }
